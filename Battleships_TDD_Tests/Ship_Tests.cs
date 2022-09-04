@@ -38,5 +38,17 @@ namespace Battleships_TDD_Tests
             Assert.Equal(width, ship.Width);
         }
 
+        [Theory]
+        [InlineData("test",1,2)]
+        [InlineData("test",2,3)]
+        public void Flip_ValidShips_FlipsShipDimensions(string name, int height, int width)
+        {
+            var ship = new Ship(name, height, width);
+
+            ship.Flip();
+
+            Assert.Equal(width, ship.Height);
+            Assert.Equal(height, ship.Width);
+        }
     }
 }

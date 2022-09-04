@@ -63,5 +63,37 @@ namespace Battleships_TDD
 
             return true;
         }
+
+        public void PlaceShips(List<Ship> ships)
+        {
+            var rand = new Random();
+
+            foreach(var ship in ships)
+            {
+                var availableFields = Fields.Where(f => f.FieldType == FieldType.Empty).ToList();
+
+                if (rand.Next(2) == 0)
+                    ship.Flip();
+
+                while(availableFields.Count > 0)
+                {
+                    var randomField = availableFields.ElementAt(rand.Next(availableFields.Count() - 1));
+
+                    var placingRes = PlaceShip(randomField.Row, randomField.Column, ship);
+                    if (!placingRes)
+                    {
+                        ship.Flip();
+                        placingRes = PlaceShip(randomField.Row, randomField.Column, ship);
+
+                        if (!placingRes)
+                        {
+                            availableFields.Remove(randomField);
+                            continue;
+                        }
+                    }
+                    break;
+                }
+            }
+        }
     }
 }

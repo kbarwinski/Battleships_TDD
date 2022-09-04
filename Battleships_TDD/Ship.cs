@@ -24,7 +24,11 @@ namespace Battleships_TDD
             Width = width;
         }
 
-
-
+        public void Flip()
+        {
+            int temp = Height;
+            Height = Width;
+            Width = temp;
+        }
     }
 }
