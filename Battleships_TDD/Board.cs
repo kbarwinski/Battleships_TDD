@@ -29,7 +29,39 @@ namespace Battleships_TDD
             }
         }
 
+        public List<Field> GetFieldRange(int startingRow, int endingRow, int startingColumn, int endingColumn)
+        {
+            return Fields.Where(f =>
+            f.Row >= startingRow &&
+            f.Row <= endingRow &&
+            f.Column >= startingColumn &&
+            f.Column <= endingColumn).ToList();
+        }
 
+        public bool PlaceShip(int row, int column, Ship ship)
+        {
+            if (ship.Width > Width || ship.Height > Height)
+                throw new ArgumentOutOfRangeException("Ship is too big for this board.");
 
+            var endingRow = row + ship.Height - 1;
+            var endingColumn = column + ship.Width - 1;
+
+            List<Field> fieldsToFill = GetFieldRange(row, endingRow, column, endingColumn);
+
+            //Checks if ship would be placed out of bounds 
+            if (fieldsToFill.Count != ship.Width * ship.Height)
+                return false;
+            //Checks if target range fields contain another ship
+            if (fieldsToFill.Any(f => f.FieldType != FieldType.Empty))
+                return false;
+
+            fieldsToFill.ForEach(f =>
+            {
+                f.FieldType = FieldType.Ship;
+                f.OwnedBy = ship;
+            });
+
+            return true;
+        }
     }
 }

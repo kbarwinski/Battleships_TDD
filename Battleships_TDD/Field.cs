@@ -11,6 +11,7 @@ namespace Battleships_TDD
         public int Row { get; set; }
         public int Column { get; set; }
         public FieldType FieldType { get; set; }
+        public Ship? OwnedBy { get; set; } = null;
 
         public Field(int row, int column)
         {

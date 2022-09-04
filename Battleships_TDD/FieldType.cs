@@ -9,5 +9,6 @@ namespace Battleships_TDD
     public enum FieldType
     {
         Empty,
+        Ship,
     }
 }
