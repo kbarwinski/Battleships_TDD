@@ -24,8 +24,8 @@ namespace Battleships_TDD_Tests
         {
             var field = new Field(row, column);
 
-            Assert.Equal(1, field.Row);
-            Assert.Equal(2, field.Column);
+            Assert.Equal(row, field.Row);
+            Assert.Equal(column, field.Column);
             Assert.Equal(FieldType.Empty, field.FieldType);
         }
     }
