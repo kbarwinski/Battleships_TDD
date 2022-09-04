@@ -8,6 +8,10 @@ namespace Battleships_TDD
 {
     public class Field
     {
+        public int Row { get; set; }
+        public int Column { get; set; }
+        public FieldType FieldType { get; set; }
+
         public Field(int row, int column)
         {
             if (row < 0 || column < 0)
@@ -17,10 +21,5 @@ namespace Battleships_TDD
             Column = column;
             FieldType = FieldType.Empty;
         }
-
-        public int Row { get; set; }
-        public int Column { get; set; }
-
-        public FieldType FieldType { get; set; }
     }
 }
