@@ -93,6 +93,8 @@ namespace Battleships_TDD
                     }
                     break;
                 }
+                if (availableFields.Count == 0)
+                    throw new InvalidOperationException("Not enough space to place ships.");
             }
         }
     }

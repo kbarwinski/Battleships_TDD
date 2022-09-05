@@ -109,5 +109,24 @@ namespace Battleships_TDD_Tests
             board.PlaceShips(new List<Ship> { ship });
             Assert.Equal(shipWidth * shipHeight, board.Fields.Count(f => f.OwnedBy == ship));
         }
+
+        [Theory]
+        [MemberData(nameof(Board_TestsData.PlaceShips_NotEnoughSpace_Data), MemberType = typeof(Board_TestsData))]
+        public void PlaceShips_NotEnoughSpace_ThrowsInvalidOperationException(Board board, List<Ship> ships)
+        {
+            Assert.Throws<InvalidOperationException>(() => board.PlaceShips(ships));
+        }
+
+        [Theory]
+        [MemberData(nameof(Board_TestsData.PlaceShips_MultipleShips_Data), MemberType = typeof(Board_TestsData))]
+        public void PlaceShips_MultipleShips_PlacesShipsRandomly(Board board, List<Ship> ships)
+        {
+            board.PlaceShips(ships);
+
+            foreach(var ship in ships)
+            {
+                Assert.Equal(ship.Width * ship.Height, board.Fields.Count(f => f.OwnedBy == ship));
+            }
+        }
     }
 }
