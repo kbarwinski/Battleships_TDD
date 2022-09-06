@@ -51,7 +51,7 @@ namespace Battleships_TDD
             //Checks if ship would be placed out of bounds 
             if (fieldsToFill.Count != ship.Width * ship.Height)
                 return false;
-            //Checks if target range fields contain another ship
+            //Checks if target range fields contains another ship
             if (fieldsToFill.Any(f => f.FieldType != FieldType.Empty))
                 return false;
 
@@ -77,7 +77,7 @@ namespace Battleships_TDD
 
                 while(availableFields.Count > 0)
                 {
-                    var randomField = availableFields.ElementAt(rand.Next(availableFields.Count() - 1));
+                    var randomField = availableFields.ElementAt(rand.Next(availableFields.Count - 1));
 
                     var placingRes = PlaceShip(randomField.Row, randomField.Column, ship);
                     if (!placingRes)

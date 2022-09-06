@@ -10,5 +10,8 @@ namespace Battleships_TDD
     {
         Empty,
         Ship,
+        Miss,
+        Hit,
+        Sunk,
     }
 }
