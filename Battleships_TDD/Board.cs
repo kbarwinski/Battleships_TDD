@@ -48,10 +48,9 @@ namespace Battleships_TDD
 
             List<Field> fieldsToFill = GetFieldRange(row, endingRow, column, endingColumn);
 
-            //Checks if ship would be placed out of bounds 
             if (fieldsToFill.Count != ship.Width * ship.Height)
                 return false;
-            //Checks if target range fields contains another ship
+
             if (fieldsToFill.Any(f => f.FieldType != FieldType.Empty))
                 return false;
 
@@ -93,6 +92,7 @@ namespace Battleships_TDD
                     }
                     break;
                 }
+
                 if (availableFields.Count == 0)
                     throw new InvalidOperationException("Not enough space to place ships.");
             }
